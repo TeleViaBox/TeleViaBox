@@ -9,6 +9,7 @@
 4. dashboard webiste for easy-to-use data import and visualization
 5. travel spot search and visualization project
 6. Page rank and reverse-connected network analysis
+7. Tubluar machine and system-stability controller hyperparameter optimization, with heuristic approaches
 
 <!--
 **TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
