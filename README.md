@@ -11,6 +11,16 @@
 6. Page rank and reverse-connected network analysis
 7. Tubluar machine and system-stability controller hyperparameter optimization, with heuristic approaches
 
+### interview: ML aspects
+
+### interview: Search engine aspects
+
+### interview: Algorithm aspects
+
+### interview: System and network aspects
+- topics: distributed system, network system, operating system
+
+
 <!--
 **TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
