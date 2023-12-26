@@ -8,6 +8,7 @@
 3. Machine learning toolbox for information-space search task, vector database, loss functions.
 4. dashboard webiste for easy-to-use data import and visualization
 5. travel spot search and visualization project
+6. Page rank and reverse-connected network analysis
 
 <!--
 **TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
