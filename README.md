@@ -20,6 +20,13 @@
 ### interview: System and network aspects
 - topics: distributed system, network system, operating system
 
+### reading list
+- Argmax Flows and Multinomial Diffusion: Learning Categorical Distributions
+: https://www.youtube.com/watch?v=150ceiAVDCY
+- Breaking the Sample Size Barrier in Reinforcement Learning via Model-Based Algorithms: https://www.youtube.com/watch?v=7PYfv9KRZfQ
+- Improving and Generalizing Flow-Based Generative Models with Minibatch Optimal Transport | Alex Tong
+: https://www.youtube.com/watch?v=UhDtH7Ia9Ag
+
 
 <!--
 **TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
