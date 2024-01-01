@@ -14,6 +14,7 @@
 9. "Course" Computer Security experiments
 10. "Course" Computer Networks experiments
 11. "Course" Algorithm Analysis and Design
+12. Hard problems solving [Link](https://github.com/TeleViaBox/hard-prob-solv)
 
 ### interview: ML aspects
 
