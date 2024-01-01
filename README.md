@@ -10,6 +10,9 @@
 5. travel spot search and visualization project
 6. Page rank and reverse-connected network analysis
 7. Tubluar machine and system-stability controller hyperparameter optimization, with heuristic approaches
+8. "Course" Operating System experiments
+9. "Course" Computer Security experiments
+10. "Course" Computer Networks experiments
 
 ### interview: ML aspects
 
