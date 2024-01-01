@@ -18,8 +18,8 @@
 13. My understanding in computer science [Link](https://github.com/TeleViaBox/my-understanding-cs/)
 
 ### not-yet started projects' list
-14. Pac-man
-15. Whats-app
+14. Pac-man design
+15. Whats-app design
 
 ### interview: ML aspects
 
