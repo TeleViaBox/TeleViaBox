@@ -1,5 +1,13 @@
 ### Hi there 👋
 
+
+### about me
+##### skill sets
+- Lang: c, c++, matlab, python, java
+- Language skills: Object-oriented programming, Large system's scalability design
+- Hardware related: signal processing, image processing, encoding/decoding computation
+- Software related: vmware, postman
+
 ### Finished projects' list
 1. light-weight search engine deployed on GCP (Google Compute Engine), with LLM chatting features, by preprocessing novels from Project Gutenberg using RAG (retrieval augmented generation).
 2. sepolia blockchain (ethereum based testnet) deployment of smart contract for real estate trading, and full-stack website (using flask app) deployed on GCP.
