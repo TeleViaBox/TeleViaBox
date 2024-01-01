@@ -13,6 +13,7 @@
 8. "Course" Operating System experiments [Link](https://github.com/TeleViaBox/pintos-prac)
 9. "Course" Computer Security experiments
 10. "Course" Computer Networks experiments
+11. "Course" Algorithm Analysis and Design
 
 ### interview: ML aspects
 
