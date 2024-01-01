@@ -15,6 +15,7 @@
 10. "Course" Computer Networks experiments
 11. "Course" Algorithm Analysis and Design
 12. Hard problems solving [Link](https://github.com/TeleViaBox/hard-prob-solv)
+13. My understanding in computer science [Link](https://github.com/TeleViaBox/my-understanding-cs/)
 
 ### interview: ML aspects
 
