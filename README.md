@@ -24,6 +24,7 @@
 11. "Course" Algorithm Analysis and Design
 12. Hard problems solving [Link](https://github.com/TeleViaBox/hard-prob-solv)
 13. My understanding in computer science [Link](https://github.com/TeleViaBox/my-understanding-cs/)
+14. JAVA: building a multimedia 2d windows desktop application
 
 ### not-yet started projects' list
 14. Pac-man design
