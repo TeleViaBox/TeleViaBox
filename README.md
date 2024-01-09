@@ -9,8 +9,8 @@
 - Software related: vmware, postman
 
 ### Finished projects' list
-1. light-weight search engine deployed on GCP (Google Compute Engine), with LLM chatting features, by preprocessing novels from Project Gutenberg using RAG (retrieval augmented generation).
-2. sepolia blockchain (ethereum based testnet) deployment of smart contract for real estate trading, and full-stack website (using flask app) deployed on GCP.
+1. light-weight search engine deployed on GCP (Google Compute Engine), with LLM chatting features, by preprocessing novels from Project Gutenberg using RAG (retrieval augmented generation). [Link](https://github.com/TeleViaBox/search-engine)
+2. sepolia blockchain (ethereum based testnet) deployment of smart contract for real estate trading, and full-stack website (using flask app) deployed on GCP. [Link](https://github.com/TeleViaBox/blockchain-market)
 
 ### not-yet finished projects' list
 3. Machine learning toolbox for information-space search task, vector database, loss functions.
