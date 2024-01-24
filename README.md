@@ -26,6 +26,7 @@
 13. My understanding in computer science [Link](https://github.com/TeleViaBox/my-understanding-cs/)
 14. JAVA: building a multimedia 2d windows desktop application
 15. data science EDA with my school's course list
+16. My understanding in IQA (Image quality assessment) and VQA (Video quality assessment)
 
 ### not-yet started projects' list
 14. Pac-man design
