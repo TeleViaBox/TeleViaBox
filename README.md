@@ -28,6 +28,7 @@
 15. data science EDA with my school's course list
 16. My understanding in IQA (Image quality assessment) and VQA (Video quality assessment) [Link](https://github.com/TeleViaBox/iqa-vqa-study)
 17. My understanding in Optimization theory design [Link](https://github.com/TeleViaBox/opt-theory-study)
+18. My understanding in Computer Network
 
 ### not-yet started projects' list
 14. Pac-man design
