@@ -47,6 +47,13 @@
 - Improving and Generalizing Flow-Based Generative Models with Minibatch Optimal Transport | Alex Tong
 : https://www.youtube.com/watch?v=UhDtH7Ia9Ag
 
+### Appendix: How to prepare repos
+- Application-oriented purpose: I want to create a code for cancer image recognition.
+- Integrate and utilize two large repositories: [Case One: [Case Two:
+- High difficulty replication is also possible.
+
+
+
 
 <!--
 **TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
