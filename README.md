@@ -54,7 +54,8 @@
 - Application-oriented purpose: I want to create a code for cancer image recognition.
 - Integrate and utilize two large repositories: [Case One: [Case Two:
 - High difficulty replication is also possible.
-
+- My preparation status update for Leetcode
+  
 
 
 
