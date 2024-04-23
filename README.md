@@ -55,8 +55,7 @@
 - Integrate and utilize two large repositories: [Case One: [Case Two:
 - High difficulty replication is also possible.
 - My preparation status update for Leetcode
-  
-
+- git commit good-practice: https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
 
 
 <!--
