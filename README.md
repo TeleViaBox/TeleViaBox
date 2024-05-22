@@ -12,6 +12,11 @@
 1. light-weight search engine deployed on GCP (Google Compute Engine), with LLM chatting features, by preprocessing novels from Project Gutenberg using RAG (retrieval augmented generation). [Link](https://github.com/TeleViaBox/search-engine)
 2. sepolia blockchain (ethereum based testnet) deployment of smart contract for real estate trading, and full-stack website (using flask app) deployed on GCP. [Link](https://github.com/TeleViaBox/blockchain-market)
 
+
+### current projects
+1. https://github.com/TeleViaBox/vidtrans/
+2. https://github.com/TeleViaBox/vqaeffic/blob/main/README.md 
+
 ### not-yet finished projects' list
 3. Machine learning toolbox for information-space search task, vector database, loss functions.
 4. dashboard webiste for easy-to-use data import and visualization
