@@ -15,7 +15,8 @@
 
 ### current projects
 1. https://github.com/TeleViaBox/vidtrans/
-2. https://github.com/TeleViaBox/vqaeffic/blob/main/README.md 
+2. https://github.com/TeleViaBox/vqaeffic/blob/main/README.md
+3. "not yet for public": https://github.com/TeleViaBox/leos-vehicle-network
 
 ### not-yet finished projects' list
 3. Machine learning toolbox for information-space search task, vector database, loss functions.
