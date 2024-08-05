@@ -1,5 +1,9 @@
-### Hi there 👋
-
+### Seleted Projects
+![image](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
+1. https://github.com/TeleViaBox/pyiqa-SE2C3-public
+2. https://github.com/TeleViaBox/vid-stream-quality-public
+3. https://github.com/TeleViaBox/society-llm-opinions-public
+4. https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
 
 ### about me
 ##### skill sets
