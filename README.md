@@ -5,6 +5,9 @@
 - my App 1: RAG (retrieval augmented generation) LLM chat app (deployed and hosted on GCP) https://github.com/TeleViaBox/society-llm-opinions-public
 - my App 2: RealEstateProject https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
 
+# Open Source Contributions
+- Spotify/Pedalboard: Fixed #411. [Method] Added 20-line PortAudio guard that raises RunTime Error when an output device vanishes, [Issue] eliminating an infinite-block bug that could [Impact] stall Spotify’s Safe-and-Sound pipelines (used to vet 7 M+ podcasts for 696 M MAU)
+
 
 ### about me
 ##### skill sets
