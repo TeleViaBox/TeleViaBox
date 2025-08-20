@@ -8,7 +8,7 @@
 # Open Source Contributions
 - Spotify/Pedalboard: Fixed #411. [Method] Added 20-line PortAudio guard that raises RunTime Error when an output device vanishes, [Issue] eliminating an infinite-block bug that could [Impact] stall Spotify’s Safe-and-Sound pipelines (used to vet 7 M+ podcasts for 696 M MAU)
 
-- Meta-RecSys/Generative-Recommenders: Fixed #308. [Method] Added a gin-configurable HSTU attention backend dispatcher (auto→C++ on Hopper, else logs safe fallback) without changing defaults. [Issue] Addresses the H100 efficiency / missing integration called out in #308. [Impact] Enables Hopper installs to use the optimized attention path while preserving public pipelines; HSTU is reported deployed across multiple Meta surfaces serving billions of users, underpins Meta’s large-scale GR stack (incl. recent context-parallel training results), and is referenced by NVIDIA’s RecSys examples; repo activity ≈ 1.4k★ / 265 forks. 
+- Meta-RecSys/Generative-Recommenders: Fixed #308. [Method] Added a gin-configurable HSTU attention backend dispatcher (auto→C++ on Hopper, else logs safe fallback) without changing defaults. [Issue] Addresses the H100 efficiency / missing integration called out in #308. [Impact] Enables Hopper installs to use the optimized attention path while preserving public pipelines; HSTU is reported deployed across multiple Meta surfaces serving billions of users, underpins Meta’s large-scale GR stack (incl. recent context-parallel training results), and is referenced by NVIDIA’s RecSys examples. 
 
 ### about me
 ##### skill sets
