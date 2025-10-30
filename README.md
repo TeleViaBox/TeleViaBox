@@ -1,3 +1,95 @@
+```
+Recommendation System: A/B Test System Design (Business Scope)
+Recommendation System: A/B Test System Design (Business Scope)
+Feb 2024 - Feb 2024Feb 2024 - Feb 2024
+1. Metrics: Primary, Secondary, and Guardrails
+• Primary metric is the single main outcome used to judge success. It must be attributable, sensitive, and stable.
+• Examples: daily engagement rate per user, average time spent, 7-day retention.
+• Secondary metrics support understanding, explain why results changed, or uncover side effects.
+• Examples: share rate, cold-start content views, creator diversity.
+• Guardrail metrics protect user experience, system performance, and business health.
+• Examples: latency (p95/p99), crash rate, content quality, policy violations, ad revenue.
+• Rule: Primary decides go/no-go; guardrails ensure we don’t “win dirty.”
+
+2. Power & Sample Size
+• Use historical data to estimate baseline metrics and plug into a calculator or internal tooling.
+• Apply techniques to reduce sample size:
+• Trigger-based sampling: include only exposed/affected users
+• Variance reduction (e.g. CUPED): use pre-experiment behavior as a covariate
+• Adjust for clustering: feeds aren’t IID, so real sample needs may be higher (see next)
+
+4. Feed-Specific Statistical Considerations
+• Feeds violate the IID assumption — user and content exposures are highly correlated.
+
+Design strategies:
+• Use user-level randomization to avoid users seeing both treatment and control
+• Trigger-based: only count users who open the feed
+• Use switchback experiments when testing infrastructure (alternate by time slot or geography)
+
+Analysis strategies:
+• Aggregate metrics at the user-day level
+• Use cluster-robust standard errors to account for within-user correlations
+• Pre-bucket users to stabilize variance across experiments
+• Use inverse propensity weighting or position correction if needed at impression level
+
+Leakage control:
+• Avoid splitting viral content or creators across groups
+• For highly interconnected systems, consider ghost experiments (logging-only) or community-level randomization
+
+
+
+
+
+Recommendation System: A/B Test System Design (Implementation Details)
+Recommendation System: A/B Test System Design (Implementation Details)
+Jan 2024 - Jan 2024Jan 2024 - Jan 2024
+1. Trustworthiness: SRM, Stopping Rules, Multiplicity
+• SRM (Sample Ratio Mismatch): check that control/treatment ratios match expectations.
+• Use chi-square test; if mismatched, pause and investigate routing or triggering logic.
+
+Stopping rules: pre-register window and analysis plan.
+• Don’t peek and stop early without correction — it increases false positive risk.
+• Use alpha-spending or Bayesian approaches for valid early stopping.
+
+Multiple comparisons:
+• Stick to one primary metric
+• For secondary metrics or multiple variants, apply FDR correction (e.g. Benjamini-Hochberg)
+• When running multiple variants, bandits are useful, but final rollout should be confirmed with traditional testing
+
+2. Practical Execution Plan
+• 1. Define goal and thresholds
+– “We aim for a +1% lift in daily engagement.”
+– MDE = +1%, alpha = 0.05, power = 0.8
+
+• 2. Estimate sample size
+– Use historical data and tools to calculate triggered users per group
+
+• 3. Randomization
+– User-level bucketing
+– Include only triggered users (e.g. those opening the feed)
+– Avoid creator/content leakage across groups
+
+• 4. Variance reduction
+– Use historical behavior (e.g. previous 7-day averages) as covariates
+
+• 5. Metric computation and significance
+– Aggregate at user-day level
+– Use cluster-robust t-tests or regression
+
+• 6. Health checks
+– Sample Ratio Mismatch (SRM)
+– Latency, crash rate
+– Guardrail metrics (e.g. harmful content, user complaints)
+
+• 7. Interpretation and rollout
+– Check if primary passed, and guardrails held
+– Analyze heterogeneity (e.g. new vs. existing users)
+– Decide: roll out, iterate, or rollback
+– Optionally run follow-up experiment to confirm long-term effects (e.g. 28-day retention)
+```
+
+
+
 ### Seleted Projects
 ![image](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
 
