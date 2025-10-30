@@ -1,4 +1,26 @@
 ```
+========Backend Stack========
+
+External Interface (B2B / B2C Users)
+• GraphQL API (via HTTP): Handles Q&A requests, text uploads, job status queries, and result fetching from frontend apps or web.
+• GraphQL Subscriptions: Pushes real-time updates such as job progress and streaming tokens.
+
+Internal Communication (between backend services)
+• gRPC: Used for fast, type-safe communication between internal services like embedding, retrieval, generation, and classification.
+• Event Bus (SNS→SQS or Kafka/Redpanda): Enables asynchronous, decoupled workflows for tasks like indexing, streaming updates, and long job orchestration.
+
+Background Task Processing
+• Celery (recommended) or RQ: Executes long-running tasks like indexing, embedding generation, offline analysis, and batch reporting.
+
+Persistent Storage & Dependencies
+• Chroma / Vector Database: Stores embeddings for semantic retrieval (already in use).
+• Redis: Acts as task queue broker (for Celery/RQ), cache layer, and pub/sub for GraphQL subscriptions.
+• (Optional) PostgreSQL: Stores structured data like tenants, billing, quotas, audit logs, and job metadata.
+• Object Storage (S3 or equivalent): Stores original text files, intermediate processing artifacts, and exported results.
+```
+
+
+```
 Recommendation System: A/B Test System Design (Business Scope)
 Recommendation System: A/B Test System Design (Business Scope)
 Feb 2024 - Feb 2024Feb 2024 - Feb 2024
