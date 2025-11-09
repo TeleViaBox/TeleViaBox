@@ -116,11 +116,6 @@ I’m building the next generation of **LLM search** and practical AI systems yo
   *Issue:* Addresses H100 efficiency / missing integration.  
   *Impact:* Hopper gets the optimized attention path without public-pipeline changes; HSTU underpins large-scale GR incl. context-parallel and appears in NVIDIA RecSys examples.
 
-### ML System (Inference, Serving, …)
-_(sections in progress)_
-
-### Autonomous Driving & VLA (Robotics)
-_(sections in progress)_
 
 ---
 
