@@ -1,209 +1,192 @@
-```
-========Backend Stack========
+Hi 👋
 
-External Interface (B2B / B2C Users)
-• GraphQL API (via HTTP): Handles Q&A requests, text uploads, job status queries, and result fetching from frontend apps or web.
-• GraphQL Subscriptions: Pushes real-time updates such as job progress and streaming tokens.
+I’m building the next generation of **LLM search** and practical AI systems you can actually run.
 
-Internal Communication (between backend services)
-• gRPC: Used for fast, type-safe communication between internal services like embedding, retrieval, generation, and classification.
-• Event Bus (SNS→SQS or Kafka/Redpanda): Enables asynchronous, decoupled workflows for tasks like indexing, streaming updates, and long job orchestration.
+### What I work on
+- 🧠 **LLM Search & RAG** — retrieval pipelines, vector DBs, hybrid search, agentic workflows  
+- 🎥 **Video IQA/VQA & streaming quality** — VMAF, encoding & evaluation tooling  
+- 📈 **Recommendation systems** — experiment design, metrics, guardrails, and trustworthy analysis  
+- 🛠 **Distributed backends** — gRPC services, event buses, background workers  
+- 🔗 **Blockchain + full-stack demos** — Sepolia smart contracts, GCP deployments
 
-Background Task Processing
-• Celery (recommended) or RQ: Executes long-running tasks like indexing, embedding generation, offline analysis, and batch reporting.
+---
 
-Persistent Storage & Dependencies
-• Chroma / Vector Database: Stores embeddings for semantic retrieval (already in use).
-• Redis: Acts as task queue broker (for Celery/RQ), cache layer, and pub/sub for GraphQL subscriptions.
-• (Optional) PostgreSQL: Stores structured data like tenants, billing, quotas, audit logs, and job metadata.
-• Object Storage (S3 or equivalent): Stores original text files, intermediate processing artifacts, and exported results.
-```
+## Backend Stack
 
+**External Interface (B2B / B2C Users)**
+- **GraphQL API (HTTP):** Q&A requests, text uploads, job status queries, and result fetching from frontend/web.
+- **GraphQL Subscriptions:** Real-time updates (job progress, streaming tokens).
 
-```
-Recommendation System: A/B Test System Design (Business Scope)
-Recommendation System: A/B Test System Design (Business Scope)
-Feb 2024 - Feb 2024Feb 2024 - Feb 2024
-1. Metrics: Primary, Secondary, and Guardrails
-• Primary metric is the single main outcome used to judge success. It must be attributable, sensitive, and stable.
-• Examples: daily engagement rate per user, average time spent, 7-day retention.
-• Secondary metrics support understanding, explain why results changed, or uncover side effects.
-• Examples: share rate, cold-start content views, creator diversity.
-• Guardrail metrics protect user experience, system performance, and business health.
-• Examples: latency (p95/p99), crash rate, content quality, policy violations, ad revenue.
-• Rule: Primary decides go/no-go; guardrails ensure we don’t “win dirty.”
+**Internal Communication (between backend services)**
+- **gRPC:** Fast, type-safe calls across embedding, retrieval, generation, classification services.
+- **Event Bus (SNS→SQS or Kafka/Redpanda):** Async, decoupled workflows for indexing, streaming updates, long-job orchestration.
 
-2. Power & Sample Size
-• Use historical data to estimate baseline metrics and plug into a calculator or internal tooling.
-• Apply techniques to reduce sample size:
-• Trigger-based sampling: include only exposed/affected users
-• Variance reduction (e.g. CUPED): use pre-experiment behavior as a covariate
-• Adjust for clustering: feeds aren’t IID, so real sample needs may be higher (see next)
+**Background Task Processing**
+- **Celery** (recommended) or **RQ:** Long-running tasks like indexing, embedding generation, offline analysis, batch reporting.
 
-4. Feed-Specific Statistical Considerations
-• Feeds violate the IID assumption — user and content exposures are highly correlated.
+**Persistent Storage & Dependencies**
+- **Chroma / Vector DB:** Embedding storage for semantic retrieval (already in use).
+- **Redis:** Task-queue broker (Celery/RQ), cache, and pub/sub for GraphQL subscriptions.
+- **(Optional) PostgreSQL:** Tenants, billing, quotas, audit logs, job metadata.
+- **Object Storage (S3 or equivalent):** Original files, intermediate artifacts, exported results.
 
-Design strategies:
-• Use user-level randomization to avoid users seeing both treatment and control
-• Trigger-based: only count users who open the feed
-• Use switchback experiments when testing infrastructure (alternate by time slot or geography)
+---
 
-Analysis strategies:
-• Aggregate metrics at the user-day level
-• Use cluster-robust standard errors to account for within-user correlations
-• Pre-bucket users to stabilize variance across experiments
-• Use inverse propensity weighting or position correction if needed at impression level
+## Recommendation System: A/B Test System Design
 
-Leakage control:
-• Avoid splitting viral content or creators across groups
-• For highly interconnected systems, consider ghost experiments (logging-only) or community-level randomization
+<details>
+<summary><b>Business Scope</b> (Feb 2024)</summary>
 
+**1) Metrics: Primary, Secondary, Guardrails**
+- **Primary:** single main outcome; attributable, sensitive, stable.  
+  *Examples:* daily engagement per user, average time spent, 7-day retention.  
+- **Secondary:** aid understanding & side effects.  
+  *Examples:* share rate, cold-start content views, creator diversity.  
+- **Guardrails:** protect UX, performance, and business health.  
+  *Examples:* latency (p95/p99), crash rate, content quality, policy violations, ad revenue.  
+- **Rule:** Primary decides go/no-go; guardrails prevent “winning dirty.”
 
+**2) Power & Sample Size**
+- Use historical baselines + calculator/internal tooling.
+- Reduce sample size via:
+  - **Trigger-based sampling:** include only exposed/affected users.
+  - **Variance reduction (CUPED):** pre-experiment behavior covariates.
+  - **Clustering adjustment:** feeds aren’t IID → real sample needs may be higher.
 
+**4) Feed-Specific Stats Considerations**
+- **Design:** user-level randomization; trigger-based (only users who open feed); switchback tests for infra (alternate by time/geography).
+- **Analysis:** aggregate at user-day; cluster-robust SEs; pre-bucket users; IPW/position correction at impression level.
+- **Leakage control:** avoid splitting viral content/creators; for highly connected systems consider ghost experiments or community-level randomization.
+</details>
 
+<details>
+<summary><b>Implementation Details</b> (Jan 2024)</summary>
 
-Recommendation System: A/B Test System Design (Implementation Details)
-Recommendation System: A/B Test System Design (Implementation Details)
-Jan 2024 - Jan 2024Jan 2024 - Jan 2024
-1. Trustworthiness: SRM, Stopping Rules, Multiplicity
-• SRM (Sample Ratio Mismatch): check that control/treatment ratios match expectations.
-• Use chi-square test; if mismatched, pause and investigate routing or triggering logic.
+**1) Trustworthiness: SRM, Stopping Rules, Multiplicity**
+- **SRM:** chi-square check for expected control/treatment ratios; investigate routing/triggering if mismatched.
+- **Stopping rules:** pre-register window & analysis; avoid peeking without correction; use alpha-spending or Bayesian approaches.
+- **Multiple comparisons:** one primary metric; FDR (Benjamini–Hochberg) for secondaries/variants; bandits for exploration, confirm final rollout with traditional testing.
 
-Stopping rules: pre-register window and analysis plan.
-• Don’t peek and stop early without correction — it increases false positive risk.
-• Use alpha-spending or Bayesian approaches for valid early stopping.
+**2) Practical Execution Plan**
+1. **Define goal & thresholds**  
+   – e.g., “+1% lift in daily engagement,” MDE=+1%, α=0.05, power=0.8  
+2. **Estimate sample size**  
+   – historical data → triggered users per group  
+3. **Randomization**  
+   – user-level bucketing; include only triggered users; prevent creator/content leakage  
+4. **Variance reduction**  
+   – use previous 7-day behavior as covariates  
+5. **Metrics & significance**  
+   – aggregate at user-day; cluster-robust t-tests or regression  
+6. **Health checks**  
+   – SRM; latency/crash; guardrails (harmful content, complaints)  
+7. **Interpretation & rollout**  
+   – primary passed + guardrails stable; analyze heterogeneity; roll out / iterate / rollback; optional follow-up for long-term effects (e.g., 28-day retention)
+</details>
 
-Multiple comparisons:
-• Stick to one primary metric
-• For secondary metrics or multiple variants, apply FDR correction (e.g. Benjamini-Hochberg)
-• When running multiple variants, bandits are useful, but final rollout should be confirmed with traditional testing
+---
 
-2. Practical Execution Plan
-• 1. Define goal and thresholds
-– “We aim for a +1% lift in daily engagement.”
-– MDE = +1%, alpha = 0.05, power = 0.8
+## Selected Projects
 
-• 2. Estimate sample size
-– Use historical data and tools to calculate triggered users per group
+![preview](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
 
-• 3. Randomization
-– User-level bucketing
-– Include only triggered users (e.g. those opening the feed)
-– Avoid creator/content leakage across groups
+- **VMAF Netflix — Enhancing Video Streaming Quality**  
+  Advanced encoding & evaluation techniques  
+  https://github.com/TeleViaBox/vid-stream-quality-public
 
-• 4. Variance reduction
-– Use historical behavior (e.g. previous 7-day averages) as covariates
+- **my App 1 — RAG LLM Chat App (GCP)**  
+  Retrieval-augmented generation chat application, deployed & hosted on GCP  
+  https://github.com/TeleViaBox/society-llm-opinions-public
 
-• 5. Metric computation and significance
-– Aggregate at user-day level
-– Use cluster-robust t-tests or regression
+- **my App 2 — RealEstateProject**  
+  Full-stack project  
+  https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
 
-• 6. Health checks
-– Sample Ratio Mismatch (SRM)
-– Latency, crash rate
-– Guardrail metrics (e.g. harmful content, user complaints)
+---
 
-• 7. Interpretation and rollout
-– Check if primary passed, and guardrails held
-– Analyze heterogeneity (e.g. new vs. existing users)
-– Decide: roll out, iterate, or rollback
-– Optionally run follow-up experiment to confirm long-term effects (e.g. 28-day retention)
-```
+## Open Source Contributions
 
+### Recommendation Systems
+- **Spotify/Pedalboard — Fixed #411**  
+  *Method:* 20-line PortAudio guard that raises `RuntimeError` when an output device vanishes.  
+  *Issue:* Eliminates an infinite-block bug that could stall Spotify’s Safe-and-Sound pipelines (used to vet 7M+ podcasts for 696M MAU).
 
+- **Meta-RecSys/Generative-Recommenders — Fixed #308**  
+  *Method:* Gin-configurable HSTU attention backend dispatcher (auto→C++ on Hopper; safe fallback otherwise) without changing defaults.  
+  *Issue:* Addresses H100 efficiency / missing integration.  
+  *Impact:* Hopper gets the optimized attention path without public-pipeline changes; HSTU underpins large-scale GR incl. context-parallel and appears in NVIDIA RecSys examples.
 
-### Seleted Projects
-![image](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
+### ML System (Inference, Serving, …)
+_(sections in progress)_
 
-- VMAF Netflix Enhancing Video Streaming Quality Through Advanced Encoding and Evaluation Techniques https://github.com/TeleViaBox/vid-stream-quality-public
-- my App 1: RAG (retrieval augmented generation) LLM chat app (deployed and hosted on GCP) https://github.com/TeleViaBox/society-llm-opinions-public
-- my App 2: RealEstateProject https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
+### Autonomous Driving & VLA (Robotics)
+_(sections in progress)_
 
-# Open Source Contributions
+---
 
-## Recommendation Systems
-- Spotify/Pedalboard: Fixed #411. [Method] Added 20-line PortAudio guard that raises RunTime Error when an output device vanishes, [Issue] eliminating an infinite-block bug that could [Impact] stall Spotify’s Safe-and-Sound pipelines (used to vet 7 M+ podcasts for 696 M MAU)
+## About Me
 
-- Meta-RecSys/Generative-Recommenders: Fixed #308. [Method] Added a gin-configurable HSTU attention backend dispatcher (auto→C++ on Hopper, else logs safe fallback) without changing defaults. [Issue] Addresses the H100 efficiency / missing integration called out. [Impact] Hopper gets the optimized attention path without public-pipeline changes; HSTU underpins large-scale GR incl. context-parallel, and is referenced in NVIDIA RecSys examples.
+#### Skill sets
+- **Languages:** C, C++, MATLAB, Python, Java  
+- **Software engineering:** OOP, large-scale system scalability design  
+- **Hardware-adjacent:** signal & image processing; encoding/decoding computation  
+- **Tools:** VMware, Postman
 
-## ML System (Inference, Serving, ...)
+---
 
-## Autonomus Driving and Vision-Language-Action (VLA) models (Robotics)
+## Finished Projects
+1. **Light-weight search engine on GCP (Compute Engine)** with LLM chat via RAG on Project Gutenberg novels.  
+   [Repo](https://github.com/TeleViaBox/search-engine)
+2. **Sepolia smart contract for real-estate trading** + full-stack website (Flask) deployed on GCP.  
+   [Repo](https://github.com/TeleViaBox/blockchain-market)
 
-### about me
-##### skill sets
-- Lang: c, c++, matlab, python, java
-- Language skills: Object-oriented programming, Large system's scalability design
-- Hardware related: signal processing, image processing, encoding/decoding computation
-- Software related: vmware, postman
+## Current Projects
+1. https://github.com/TeleViaBox/vidtrans/  
+2. https://github.com/TeleViaBox/vqaeffic/blob/main/README.md  
+3. “not yet for public”: https://github.com/TeleViaBox/leos-vehicle-network
 
-### Finished projects' list
-1. light-weight search engine deployed on GCP (Google Compute Engine), with LLM chatting features, by preprocessing novels from Project Gutenberg using RAG (retrieval augmented generation). [Link](https://github.com/TeleViaBox/search-engine)
-2. sepolia blockchain (ethereum based testnet) deployment of smart contract for real estate trading, and full-stack website (using flask app) deployed on GCP. [Link](https://github.com/TeleViaBox/blockchain-market)
-
-
-### current projects
-1. https://github.com/TeleViaBox/vidtrans/
-2. https://github.com/TeleViaBox/vqaeffic/blob/main/README.md
-3. "not yet for public": https://github.com/TeleViaBox/leos-vehicle-network
-
-### not-yet finished projects' list
-3. Machine learning toolbox for information-space search task, vector database, loss functions.
-4. dashboard webiste for easy-to-use data import and visualization
-5. travel spot search and visualization project
-6. Page rank and reverse-connected network analysis
-7. Tubluar machine and system-stability controller hyperparameter optimization, with heuristic approaches
-8. "Course" Operating System experiments [Link](https://github.com/TeleViaBox/pintos-prac)
-9. "Course" Computer Security experiments
-10. "Course" Computer Networks experiments
-11. "Course" Algorithm Analysis and Design
-12. Hard problems solving [Link](https://github.com/TeleViaBox/hard-prob-solv)
-13. My understanding in computer science [Link](https://github.com/TeleViaBox/my-understanding-cs/)
-14. JAVA: building a multimedia 2d windows desktop application
-15. data science EDA with my school's course list
-16. My understanding in IQA (Image quality assessment) and VQA (Video quality assessment) [Link](https://github.com/TeleViaBox/iqa-vqa-study)
-17. My understanding in Optimization theory design [Link](https://github.com/TeleViaBox/opt-theory-study)
+## Not-yet Finished
+3. ML toolbox for information-space search (vector DB, loss functions)  
+4. Dashboard website for easy data import & visualization  
+5. Travel-spot search & visualization  
+6. PageRank & reverse-connected network analysis  
+7. Tabular machine & system-stability controller hyper-parameter optimization (heuristics)  
+8. **Course:** Operating Systems — [pintos-prac](https://github.com/TeleViaBox/pintos-prac)  
+9. **Course:** Computer Security experiments  
+10. **Course:** Computer Networks experiments  
+11. **Course:** Algorithm Analysis & Design  
+12. Hard problems solving — [repo](https://github.com/TeleViaBox/hard-prob-solv)  
+13. My understanding in computer science — [repo](https://github.com/TeleViaBox/my-understanding-cs/)  
+14. Java: multimedia 2D Windows desktop application  
+15. Data-science EDA with school course list  
+16. IQA (Image) & VQA (Video) study — [repo](https://github.com/TeleViaBox/iqa-vqa-study)  
+17. Optimization theory study — [repo](https://github.com/TeleViaBox/opt-theory-study)  
 18. My understanding in Computer Network
 
-### not-yet started projects' list
-14. Pac-man design
-15. Whats-app design
+## Not-yet Started
+14. Pac-Man design  
+15. WhatsApp design
 
-### interview: ML aspects
+---
 
-### interview: Search engine aspects
+## Interview Notes
+- **ML aspects**  
+- **Search engine aspects**  
+- **Algorithm aspects**  
+- **System & network aspects:** distributed systems, networking, operating systems
 
-### interview: Algorithm aspects
+---
 
-### interview: System and network aspects
-- topics: distributed system, network system, operating system
+## Reading List
+- **Argmax Flows and Multinomial Diffusion: Learning Categorical Distributions** — https://www.youtube.com/watch?v=150ceiAVDCY  
+- **Breaking the Sample Size Barrier in RL via Model-Based Algorithms** — https://www.youtube.com/watch?v=7PYfv9KRZfQ  
+- **Improving & Generalizing Flow-Based GMs with Minibatch Optimal Transport (Alex Tong)** — https://www.youtube.com/watch?v=UhDtH7Ia9Ag
 
-### reading list
-- Argmax Flows and Multinomial Diffusion: Learning Categorical Distributions
-: https://www.youtube.com/watch?v=150ceiAVDCY
-- Breaking the Sample Size Barrier in Reinforcement Learning via Model-Based Algorithms: https://www.youtube.com/watch?v=7PYfv9KRZfQ
-- Improving and Generalizing Flow-Based Generative Models with Minibatch Optimal Transport | Alex Tong
-: https://www.youtube.com/watch?v=UhDtH7Ia9Ag
+---
 
-### Appendix: How to prepare repos
-- Application-oriented purpose: I want to create a code for cancer image recognition.
-- Integrate and utilize two large repositories: [Case One: [Case Two:
-- High difficulty replication is also possible.
-- My preparation status update for Leetcode
-- git commit good-practice (Semantic Commit Messages): https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
-
-
-<!--
-**TeleViaBox/TeleViaBox** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Appendix: How I Prepare Repos
+- Application-oriented goals (e.g., cancer image recognition)  
+- Integrate & utilize two large repositories (Case One / Case Two)  
+- High-difficulty replication where needed  
+- Prep status updates for LeetCode  
+- **Semantic commit messages:** https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
