@@ -1,5 +1,7 @@
 Hi 👋
 
+My best practice in DevOps: https://gist.github.com/TeleViaBox/f702ec4454e783216f072d7dd43615eb
+
 I’m building the next generation of **LLM search** and practical AI systems you can actually run.
 
 ### What I work on
