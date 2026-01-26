@@ -1,4 +1,4 @@
-# best engineering practice
+# best engineering practice (in plain words)
 1. Information hiding
 2. Single source of truth
 3. Make illegal states unrepresentable
