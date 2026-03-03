@@ -1,3 +1,6 @@
+🎉🎉 See you in CVPR'26 (Denver, USA) and AISTATS'26 (Tangier, Morocco)! 🎉🎉
+
+
 CVPR 2026 Accepted: https://arxiv.org/pdf/2602.23295
 
 My best practice in DevOps: https://gist.github.com/TeleViaBox/f702ec4454e783216f072d7dd43615eb
