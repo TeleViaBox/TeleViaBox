@@ -3,7 +3,7 @@
 
 CVPR 2026 Accepted: https://arxiv.org/pdf/2602.23295
 
-# DevOps CONTRIBUTIONS
+#### DevOps CONTRIBUTIONS
 ####  1. RAG (Retrieval-Augmented Generation) for Long-Context Queries (32k paragraphs in query space)  + LLM (a. Falcon LLM local serving, and b. Openai API) + Semantic Search in Vector DB (Chroma) + End-to-end Deployed on GCP cloud platform
 - https://github.com/TeleViaBox/society-llm-opinions-public
 
