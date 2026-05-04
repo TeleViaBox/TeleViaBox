@@ -3,19 +3,51 @@
 
 CVPR 2026 Accepted: https://arxiv.org/pdf/2602.23295
 
-My best practice in DevOps: https://gist.github.com/TeleViaBox/f702ec4454e783216f072d7dd43615eb
+# DevOps CONTRIBUTIONS
+###  1. RAG (Retrieval-Augmented Generation) for Long-Context Queries (32k paragraphs in query space)  + LLM (a. Falcon LLM local serving, and b. Openai API) + Semantic Search in Vector DB (Chroma) + End-to-end Deployed on GCP cloud platform
+- https://github.com/TeleViaBox/society-llm-opinions-public
 
-I’m building the next generation of **LLM search** and practical AI systems you can actually run.
 
-### What I work on
-- 🧠 **LLM Search & RAG** — retrieval pipelines, vector DBs, hybrid search, agentic workflows  
-- 🎥 **Video IQA/VQA & streaming quality** — VMAF, encoding & evaluation tooling  
-- 📈 **Recommendation systems** — experiment design, metrics, guardrails, and trustworthy analysis  
-- 🛠 **Distributed backends** — gRPC services, event buses, background workers  
-- 🔗 **Blockchain + full-stack demos** — Sepolia smart contracts, GCP deployments
+### 2. Neo4j + FastAPI + Prometheus + Grafana (Observability, Maintainability) + Load Test End-to-end Deployed on AWS cloud platform + Load Testing on AWS
+- https://github.com/TeleViaBox/mini-neo4j-agent-backend
+Website: Full-stack LLM conversational semantic search & chat using Vector Database with RAG
+Cloud Deploy: Delivered a semantic search, chat app end-to-end (React UI, Python APIs), deployed on GCP with CI/CD.
+Backend Maintainability, Scalability: Built an ANN Vector Database (Chroma) over 11 novels with sub-second retrieval; evaluated quality & performance (R@5/10 0.88/0.94, MRR@10 0.82; latency p50/p95 95/220 ms; QPS 14).
+
+### Spotify Mega-scale system DevOps: Spotify/Pedalboard: Fixed #411.
+- https://github.com/spotify/pedalboard/issues/411
+- https://github.com/spotify/pedalboard/pull/432
+[Method] Added 20-line PortAudio guard that raises RunTime Error when an output device vanishes,  
+[Issue] eliminating an infinite-block bug that could 
+[Impact] stall Spotify’s Safe-and-Sound pipelines (used to vet 7 M+ podcasts for 696 M MAU)
+
+### Meta GPU DevOps: Meta-RecSys/Generative-Recommenders: Fixed #308. 
+- https://github.com/meta-recsys/generative-recommenders/issues/308
+- https://github.com/meta-recsys/generative-recommenders/pull/345
+[Method] Added a gin-configurable HSTU attention backend dispatcher (auto: C++ on Hopper, else logs safe fallback). 
+[Issue] Addresses the H100 efficiency / missing integration called out. 
+[Impact] Enables Hopper installs to use the optimized attention path while preserving public pipelines; HSTU is reported deployed across multiple Meta surfaces serving billions of users, underpins Meta’s large-scale GR stack (incl. recent context-parallel training results), and is referenced by NVIDIA’s RecSys examples.
+
 
 ---
 
+## Selected Projects
+
+![preview](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
+
+- **VMAF Netflix — Enhancing Video Streaming Quality**  
+  Advanced encoding & evaluation techniques  
+  https://github.com/TeleViaBox/vid-stream-quality-public
+
+- **my App 1 — RAG LLM Chat App (GCP)**  
+  Retrieval-augmented generation chat application, deployed & hosted on GCP  
+  https://github.com/TeleViaBox/society-llm-opinions-public
+
+- **my App 2 — RealEstateProject**  
+  Full-stack project  
+  https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
+
+---
 ## Backend Stack
 
 **External Interface (B2B / B2C Users)**
@@ -91,23 +123,6 @@ I’m building the next generation of **LLM search** and practical AI systems yo
 
 ---
 
-## Selected Projects
-
-![preview](https://github.com/user-attachments/assets/d8554f23-e3b4-4a15-93ce-e840d53606df)
-
-- **VMAF Netflix — Enhancing Video Streaming Quality**  
-  Advanced encoding & evaluation techniques  
-  https://github.com/TeleViaBox/vid-stream-quality-public
-
-- **my App 1 — RAG LLM Chat App (GCP)**  
-  Retrieval-augmented generation chat application, deployed & hosted on GCP  
-  https://github.com/TeleViaBox/society-llm-opinions-public
-
-- **my App 2 — RealEstateProject**  
-  Full-stack project  
-  https://github.com/TeleViaBox/RealEstateProject_beautified_beau_new_upload
-
----
 
 ## Open Source Contributions
 
@@ -134,7 +149,7 @@ I’m building the next generation of **LLM search** and practical AI systems yo
 
 ---
 
-## Finished Projects
+## Old Projects
 1. **Light-weight search engine on GCP (Compute Engine)** with LLM chat via RAG on Project Gutenberg novels.  
    [Repo](https://github.com/TeleViaBox/search-engine)
 2. **Sepolia smart contract for real-estate trading** + full-stack website (Flask) deployed on GCP.  
@@ -175,12 +190,27 @@ I’m building the next generation of **LLM search** and practical AI systems yo
 - **Algorithm aspects**  
 - **System & network aspects:** distributed systems, networking, operating systems
 
+
+
+My best practice in DevOps: https://gist.github.com/TeleViaBox/f702ec4454e783216f072d7dd43615eb
+
+I’m building the next generation of **LLM search** and practical AI systems you can actually run.
+
+### What I work on
+- 🧠 **LLM Search & RAG** — retrieval pipelines, vector DBs, hybrid search, agentic workflows  
+- 🎥 **Video IQA/VQA & streaming quality** — VMAF, encoding & evaluation tooling  
+- 📈 **Recommendation systems** — experiment design, metrics, guardrails, and trustworthy analysis  
+- 🛠 **Distributed backends** — gRPC services, event buses, background workers  
+- 🔗 **Blockchain + full-stack demos** — Sepolia smart contracts, GCP deployments
+
+
 ---
 
 ## Reading List
 - **Argmax Flows and Multinomial Diffusion: Learning Categorical Distributions** — https://www.youtube.com/watch?v=150ceiAVDCY  
 - **Breaking the Sample Size Barrier in RL via Model-Based Algorithms** — https://www.youtube.com/watch?v=7PYfv9KRZfQ  
 - **Improving & Generalizing Flow-Based GMs with Minibatch Optimal Transport (Alex Tong)** — https://www.youtube.com/watch?v=UhDtH7Ia9Ag
+
 
 ---
 
